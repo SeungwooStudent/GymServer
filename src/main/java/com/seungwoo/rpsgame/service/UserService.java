@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -13,13 +15,25 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-
+    //스플릿 String 하나하나 끊는것
     // insert into
-    public String signUp(String id, String name, int age, String phoneNumber) {
-        if (userRepository.findById(id).isPresent()) {
+    public String signUp(String name, int age, String phoneNumber) {
+        String privateID;
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM/dd");
+        String formatedNow = now.format(formatter);
+        System.out.println(formatedNow);
+        String result = formatedNow.replace("/","");
+
+        System.out.println(result);
+
+        String resultPhoneNumber = phoneNumber.split("-")[2];
+        result+=resultPhoneNumber;
+
+        if (userRepository.findById(result).isPresent()) {
             return "중복된 회원번호 입니다 다시 시도해주세요";
         } else {
-            userRepository.save(User.builder().id(id).name(name).age(age).phoneNumber(phoneNumber).build());
+            userRepository.save(User.builder().id(result).name(name).age(age).phoneNumber(phoneNumber).build());
             return "회원가입이 완료되었습니다.";
         }
     }

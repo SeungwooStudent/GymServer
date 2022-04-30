@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signUp(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
-        return userService.signUp(id, name, age, phoneNumber);
+    public String signUp(@RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
+        return userService.signUp(name, age, phoneNumber);
     }
 
     @PostMapping("/delete")

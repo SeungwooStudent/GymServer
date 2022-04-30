@@ -6,6 +6,8 @@ import com.seungwoo.rpsgame.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AdminService {
@@ -29,6 +31,11 @@ public class AdminService {
             adminRepository.save(Admin.builder().id(id).pwd(pwd).build());
             return "회원가입이 완료되었습니다.";
         }
+    }
+
+    public List<Admin> getAdmin() {
+        List<Admin> adminUsers = adminRepository.findAll();
+        return adminUsers;
     }
 
 }
