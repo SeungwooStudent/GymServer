@@ -19,7 +19,7 @@ public class AdminService {
         if (adminlogin.equals(adminPwd)) {
             return "로그인 성공";
         }
-        return "비밀번호가 틀렸습니다.";
+        return "비밀번호가 틀렸습니다..";
     }
 
     public String adminSignUp(String id, String pwd) {
