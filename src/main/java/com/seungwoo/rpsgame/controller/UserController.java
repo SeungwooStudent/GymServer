@@ -38,6 +38,7 @@ public class UserController {
         return userService.searchUser(id);
     }
 
+    @CrossOrigin("*")
     @PostMapping("/signup")
     public String signUp(@RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
         return userService.signUp(name, age, phoneNumber);
@@ -62,7 +63,9 @@ public class UserController {
 //
 //
     @GetMapping("/users")
+    @CrossOrigin("*")
     public List<User> getUsers() {
+        System.out.println("Get Users!!!!");
         return userService.getUsers();
     }
 }

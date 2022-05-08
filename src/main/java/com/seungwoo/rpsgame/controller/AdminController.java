@@ -14,6 +14,7 @@ public class AdminController {
     private final AdminService adminService;
     @ResponseBody
     @GetMapping("/admin_login")
+    @CrossOrigin("*")
     public String login(@RequestParam("id") String id, @RequestParam("pwd") String pwd){
         System.out.println("id  " + id + " , pwd : " + pwd);
         String result = adminService.adminLogin(id,pwd);
