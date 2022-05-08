@@ -5,8 +5,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.232:8080/users",
-
+            url: "http://192.168.219.109:8080/users",
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
             success: function (json) {

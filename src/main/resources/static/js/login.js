@@ -1,6 +1,7 @@
 //jquery
 $(document).ready(function(){
     $('button').click(function () {
+
         var adminId = $('#id').val(); //val : text바 안에 값을 가져오겠다
         var adminpwd = $('#pwd').val();
 
@@ -13,7 +14,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.232:8080/admin_login",
+            url: "http://192.168.219.109:8080/admin_login",
             data: query,
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
