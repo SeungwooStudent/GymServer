@@ -22,8 +22,7 @@ $(document).ready(function(){
 
            success: function (res) {
                alert(res);
-//               getUser();
-               SearchUser();
+               getUser();
            }
        });
    });
@@ -53,34 +52,4 @@ $(document).ready(function(){
            }
        });
    }
-
-      function SearchUser() {
-          $.ajax({
-              type: "GET",
-              url: "http://192.168.10.2:8080/search",
-              contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-
-              success: function (json) {
-                  $('#tbody').html("");
-                  var list = json;
-                  var listLen = list.length;
-                  for (var i = 0; i < listLen; i++) {
-                      var str = "<tr>" +
-                          "<td>" + list[i].id + "</td>" +
-                          "<td>" + list[i].name + "</td>" +
-                          "<td>" + list[i].age + "</td>" +
-                          "<td>" + list[i].phoneNumber + "</td>" +
-                          "</tr>";
-
-                          if(input.equals(listLen[i].name)) {
-                          listLen[i].name();
-                          }
-
-//                      $('#tbody').append(str);
-                  }
-
-              }
-          });
-      }
-
 })

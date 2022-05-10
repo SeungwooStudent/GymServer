@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface UserRepository extends JpaRepository<User, String> {
     //user.id = :id" > user.id(table에 있는 아이디) = :id(내가 입력한 id)
 //    @Query("SELECT user FROM User user Where user.id=:id")
@@ -29,6 +31,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     int updateUserById(String id, String name, int age, String phoneNumber);
 
     //검색
-    @Query("SELECT user FROM User user Where user.id=:id")
-    User searchUserById(String id);
+    @Query("SELECT user FROM User user Where user.name=:name")
+    List<User> searchUserByName(String name);
 }

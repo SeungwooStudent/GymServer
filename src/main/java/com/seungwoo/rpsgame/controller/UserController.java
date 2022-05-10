@@ -34,8 +34,8 @@ public class UserController {
 //    }
 //
     @GetMapping("/search")
-    public User searchUser(@RequestParam("id") String id) {
-        return userService.searchUser(id);
+    public List<User> searchUser(@RequestParam("name") String name) {
+        return userService.searchUser(name);
     }
 
     @CrossOrigin("*")
