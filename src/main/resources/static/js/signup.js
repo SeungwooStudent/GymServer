@@ -14,11 +14,13 @@ $(document).ready(function(){
            phoneNumber: phone_number
        };
 
+
+
        //통신하는 부분
 
        $.ajax({
            type: "POST",
-           url: "http://192.168.219.109:8080/signup",
+           url: "http://192.168.10.2:8080/signup",
            data: query,
            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
@@ -29,10 +31,11 @@ $(document).ready(function(){
        });
    });
 
+
    function getUser() {
        $.ajax({
            type: "GET",
-           url: "http://192.168.219.109:8080/users",
+           url: "http://192.168.10.2:8080/users",
            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
            success: function (json) {
