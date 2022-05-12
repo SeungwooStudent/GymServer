@@ -33,6 +33,7 @@ public class UserController {
 //        return "Hello";
 //    }
 //
+    @CrossOrigin("*")
     @GetMapping("/search")
     public List<User> searchUser(@RequestParam("name") String name) {
         return userService.searchUser(name);
@@ -41,9 +42,12 @@ public class UserController {
     @CrossOrigin("*")
     @PostMapping("/signup")
     public String signUp(@RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
-        return userService.signUp(name, age, phoneNumber);
+        System.out.println("name : " + name + " age : " + age + " phoneNumber : " + phoneNumber);
+        String result = userService.signUp(name, age, phoneNumber);
+        return result;
     }
 
+    @CrossOrigin("*")
     @PostMapping("/delete")
     public String delete(@RequestParam("id") String id) {
         return userService.deleteUser(id);

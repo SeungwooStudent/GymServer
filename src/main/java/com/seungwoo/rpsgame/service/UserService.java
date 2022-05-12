@@ -85,11 +85,7 @@ public class UserService {
 
 
     public List<User> searchUser(String name) {
-        if (!userRepository.findById(name).isPresent()) {
-            return null;
-        }
         return userRepository.searchUserByName(name);
-
     }
 
 
