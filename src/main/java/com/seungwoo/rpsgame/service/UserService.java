@@ -73,13 +73,13 @@ public class UserService {
     }
 
 //    public String adminLogin(String adminId, String adminPwd) {
-////        String findbypwd = userRepository.findPasswordById(adminId);
-////        if (findbypwd == null) {
-////            return "없는 아이디 입니다!";
-////        }
-////        if (findbypwd.equals(adminPwd)) {
-////            return "로그인 성공";
-////        }
+//        String findbypwd = userRepository.findPasswordById(adminId);
+//        if (findbypwd == null) {
+//            return "없는 아이디 입니다!";
+//        }
+//        if (findbypwd.equals(adminPwd)) {
+//            return "로그인 성공";
+//        }
 //        return "비밀번호가 틀렸습니다.";
 //    }
 
