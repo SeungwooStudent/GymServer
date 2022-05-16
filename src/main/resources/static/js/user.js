@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://192.168.0.232:8080/signup",
+            url: "http://192.168.10.2:8080/signup",
             data: query,
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.232:8080/search",
+            url: "http://192.168.10.2:8080/search",
             data: query,
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://192.168.0.232:8080/delete",
+            url: "http://192.168.10.2:8080/delete",
             data: query,
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.13:8080/users",
+            url: "http://192.168.10.2:8080/users",
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
             success: function () {
@@ -98,11 +98,32 @@ $(document).ready(function () {
         });
     });
 
+    function deleteUser(deleteId) {
+            alert("delete Id : " + deleteId);
+            var query = {
+                id: deleteId, // key : id, value : adminId
+            };
+
+
+            //통신하는 부분
+
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.10.2:8080/delete",
+                data: query,
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+
+                success: function (res) {
+                    alert(res);
+                    getUser();
+                }
+            });
+    };
 
     function getUser() {
         $.ajax({
             type: "GET",
-            url: "http://192.168.0.13:8080/users",
+            url: "http://192.168.10.2:8080/users",
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
             success: function (json) {
@@ -115,20 +136,28 @@ $(document).ready(function () {
                         "<td>" + list[i].name + "</td>" +
                         "<td>" + list[i].age + "</td>" +
                         "<td>" + list[i].phoneNumber + "</td>" +
-                        "<td><button type='button' class='btnDelete'>삭제</button></td>"
+                        "<td><button type='button' class='btnUpdate'>update</button></td>"
                     "</tr>";
                     $('#tbody').append(str);
 
                 }
 
-                var eventTraget = document.getElementsByClassName('btnDelete');
-                for (var i = 0; i < eventTraget.length; i++) {
-                    eventTraget[i].addEventListener('click', function () {
+                var eventTarget = document.getElementsByClassName('btnUpdate');
+                for (var i = 0; i < eventTarget.length; i++) {
+                    eventTarget[i].addEventListener('click', function () {
                         // var index = $(this).parent().parent().index();
                         var findTr = $(this).parent().parent();
+                        var findId = findTr.find("td:eq(0)").text();
+                        var findName = findTr.find("td:eq(1)").text();
+                        var findAge = findTr.find("td:eq(2)").text();
+                        var findPn = findTr.find("td:eq(3)").text();
+                        $('#name').val(findTr.find("td:eq(1)").text());
+                        $('#age').val(findTr.find("td:eq(2)").text());
+                        $('#phone_number').val(findTr.find("td:eq(3)").text());
 
-                        alert("index : "  + findTr.find("td:eq(1)").text());
-
+                        // if user click the button
+                        // $("#sfdkjlhasjkdf).click(
+                        // updateUser(findId, findName, findAge, findPn);
 
                     })
                 }

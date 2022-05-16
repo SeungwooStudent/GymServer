@@ -53,6 +53,7 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
+    @CrossOrigin("*")
     @PostMapping("/update")
     public String update(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
         return userService.updateUser(id, name, age, phoneNumber);
