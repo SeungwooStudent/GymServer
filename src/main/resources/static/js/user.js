@@ -54,7 +54,6 @@ $(document).ready(function () {
                     $('#tbody').append(str);
 
                 }
-
             }
         });
     });
@@ -84,6 +83,28 @@ $(document).ready(function () {
         });
     });
 
+//        function deleteUser(deleteId) {
+//                alert("delete Id : " + deleteId);
+//                var query = {
+//                    id: deleteId, // key : id, value : adminId
+//                };
+//
+//
+//                //통신하는 부분
+//
+//                $.ajax({
+//                    type: "POST",
+//                    url: "http://192.168.10.2:8080/delete",
+//                    data: query,
+//                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+//
+//                    success: function (res) {
+//                        alert(res);
+//                        getUser();
+//                    }
+//                });
+//        };
+
     $('#btnUserAll').click(function () {
         //통신하는 부분
 
@@ -98,27 +119,43 @@ $(document).ready(function () {
         });
     });
 
-    function deleteUser(deleteId) {
-            alert("delete Id : " + deleteId);
-            var query = {
-                id: deleteId, // key : id, value : adminId
-            };
+
+        $('#btnUpdate').click(function () {
+
+        var choiceUser = confirm("입력하신 정보로 수정하시겠습니까?");
+
+        if(choiceUser == true) {
+        var findId = $('#id').val();
+        var findName = $('#name').val();
+        var findAge = $('#age').val();
+        var findPn = $('#phone_number').val();
+
+        var query = {
+            id: findId,
+            name: findName, // key : id, value : adminId
+            age: findAge,
+            phoneNumber: findPn
+        };
+        } else {
+        alert("취소되었습니다");
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.10.2:8080/update",
+            data: query,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+
+            success: function (res) {
+                alert(res);
+                getUser();
+            }
+        });
+    });
 
 
-            //통신하는 부분
 
-            $.ajax({
-                type: "POST",
-                url: "http://192.168.10.2:8080/delete",
-                data: query,
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 
-                success: function (res) {
-                    alert(res);
-                    getUser();
-                }
-            });
-    };
 
     function getUser() {
         $.ajax({
@@ -151,6 +188,7 @@ $(document).ready(function () {
                         var findName = findTr.find("td:eq(1)").text();
                         var findAge = findTr.find("td:eq(2)").text();
                         var findPn = findTr.find("td:eq(3)").text();
+                        $('#id').val(findTr.find("td:eq(0)").text());
                         $('#name').val(findTr.find("td:eq(1)").text());
                         $('#age').val(findTr.find("td:eq(2)").text());
                         $('#phone_number').val(findTr.find("td:eq(3)").text());

@@ -30,6 +30,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("UPDATE User user SET name = :name, age = :age, phone_number = :phoneNumber WHERE id = :id")
     int updateUserById(String id, String name, int age, String phoneNumber);
 
+    //id없이
+//    @Query("UPDATE User user SET name = :name, age = :age, phone_number = :phoneNumber WHERE name != :name AND age != :age AND phone_number != :phoneNumber")
+//    int updateUserById(String name, int age, String phoneNumber);
+
+
     //검색
     @Query("SELECT user FROM User user Where user.name=:name")
     List<User> searchUserByName(String name);

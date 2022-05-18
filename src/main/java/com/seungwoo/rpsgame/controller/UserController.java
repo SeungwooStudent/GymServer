@@ -55,7 +55,10 @@ public class UserController {
 
     @CrossOrigin("*")
     @PostMapping("/update")
-    public String update(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
+//    public String update(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
+//        return userService.updateUser(id, name, age, phoneNumber);
+//    }
+    public String update(@RequestParam("id") String id,@RequestParam("name") String name, @RequestParam("age") int age, @RequestParam("phoneNumber") String phoneNumber) {
         return userService.updateUser(id, name, age, phoneNumber);
     }
 //
